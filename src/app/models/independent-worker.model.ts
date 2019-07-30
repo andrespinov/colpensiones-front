@@ -1,4 +1,5 @@
 export class IndependentWorkerModel {
+    public approved: boolean = false;
     public birthdate: Date | string = '';
     public email: string = '';
     public documentNumber: number = null;
@@ -7,10 +8,12 @@ export class IndependentWorkerModel {
     public gender: string = '';
     public job: string = '';
     public monthlyIncome: number = null;
+    public reviewed: boolean = false;
     public telephone: number = null;
 
     public constructor(item?: IndependentWorkerModel) {
         if (item) {
+            this.approved = item.approved;
             this.birthdate = item.birthdate;
             this.email = item.email;
             this.documentNumber = item.documentNumber;
@@ -19,6 +22,7 @@ export class IndependentWorkerModel {
             this.gender = item.gender;
             this.job = item.job;
             this.monthlyIncome = item.monthlyIncome;
+            this.reviewed = item.reviewed;
             this.telephone = item.telephone;
         }
     }
