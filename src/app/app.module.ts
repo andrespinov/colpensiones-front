@@ -5,8 +5,14 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+// Components
 import { IndependentsFormComponent } from './components/independent-workers/independets-form/independents-form.component';
 import { IndependentWorkersComponent } from './components/independent-workers/independent-workers.component';
+
+// Services
+import { IndependentWorkerService } from './services/independent-worker.service';
+
+// Modules
 import { SharedModule } from './shared/shared.module';
 
 @NgModule({
@@ -21,7 +27,7 @@ import { SharedModule } from './shared/shared.module';
     FormsModule,
     SharedModule
   ],
-  providers: [],
+  providers: [IndependentWorkerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

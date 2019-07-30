@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { IndependentWorkerModel } from '../models/independent-worker.model';
 import { environment } from 'src/environments/environment';
@@ -34,7 +33,7 @@ export class IndependentWorkerService {
     worker.reviewed = true;
     return this.http.put<IndependentWorkerModel>(environment.api + Endpoints.INDEPENDENT_WORKER, worker).pipe(
       map((updatedWorker: IndependentWorkerModel) => {
-        const workerIndex = this.independentWorkers.findIndex((w: IndependentWorkerModel) => 
+        const workerIndex = this.independentWorkers.findIndex((w: IndependentWorkerModel) =>
           w.documentNumber === updatedWorker.documentNumber
         );
         this.independentWorkers[workerIndex] = new IndependentWorkerModel(updatedWorker);
