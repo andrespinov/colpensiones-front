@@ -1,13 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-// Components
-import { IndependentWorkersComponent } from './components/independent-workers/independent-workers.component';
-
+import { independentWorkersRoutes } from './components/independent-workers/independent-worker.routing';
 
 const routes: Routes = [
-  { path: 'personas-independientes', component: IndependentWorkersComponent },
-  { path: '', redirectTo: '/personas-independientes', pathMatch: 'full' },
+  { path: 'personas-independientes', children: independentWorkersRoutes },
+  { path: '', redirectTo: '/personas-independientes/formulario', pathMatch: 'full' },
 ];
 
 @NgModule({

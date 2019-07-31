@@ -1,16 +1,31 @@
 import { NgModule } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatNativeDateModule } from '@angular/material/core';
 
+import { MatButtonModule } from '@angular/material/button';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
   imports: [
-    BrowserAnimationsModule,
-    MatInputModule
+    MatButtonModule,
+    MatDatepickerModule,
+    MatIconModule,
+    MatInputModule,
+    MatNativeDateModule,
+    MatSelectModule,
+    MatToolbarModule
   ],
   exports: [
-    BrowserAnimationsModule,
-    MatInputModule
+    MatButtonModule,
+    MatDatepickerModule,
+    MatIconModule,
+    MatInputModule,
+    MatNativeDateModule,
+    MatSelectModule,
+    MatToolbarModule
   ]
 })
 export class MaterialModule {}

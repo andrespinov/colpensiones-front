@@ -1,6 +1,28 @@
-$theme-colors: (
-  "primary": #05f532,
-  "secondary": #402ab4
+// Colors
+$primary: #70a203;
+$secondary: #115511;
+$accent: #00838f;
+$warn: #b00020;
+$info: #97751e;
+$gray: #6b6b6b;
+$custom-white: #d8ecaa;
+
+$colors: (
+  primary: $primary,
+  secondary: $secondary,
+  accent: $accent,
+  warn: $warn,
+  info: $info,
+  gray: $gray
 );
 
-@import "../../node_modules/bootstrap/scss/bootstrap";
+// Margin and Padding
+
+$spaces: (
+  0: 0,
+  1: 0.25rem,
+  2: 0.5rem,
+  3: 1rem,
+  4: 1.5rem,
+  5: 3rem
+)
