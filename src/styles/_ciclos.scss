@@ -1,0 +1,69 @@
+@import 'vars.scss';
+
+// Class for colors
+@mixin colors-factory($index, $color) {
+  .color-#{$index} {
+    color: $color;   
+  }
+  .bg-#{$index} {
+    background-color: $color;
+  }
+}
+
+@each $index, $color in $colors {
+  @include colors-factory($index, $color);
+}
+
+// Margin and padding
+@mixin spaces-factory($index, $space) {
+  .m-#{$index} {
+    margin: $space!important;
+  }
+  .mt-#{$index} {
+    margin-top: $space!important;
+  }
+  .mb-#{$index} {
+    margin-bottom: $space!important;
+  }
+  .mr-#{$index} {
+    margin-right: $space!important;
+  }
+  .ml-#{$index} {
+    margin-left: $space!important;
+  }
+  .mx-#{$index} {
+    @extend .mr-#{$index};
+    @extend .ml-#{$index};
+  }
+  .my-#{$index} {
+    @extend .mt-#{$index};
+    @extend .mb-#{$index};
+  }
+  .p-#{$index} {
+    padding: $space!important;
+  }
+  .pt-#{$index} {
+    padding-top: $space!important;
+  }
+  .pb-#{$index} {
+    padding-bottom: $space!important;
+  }
+  .pr-#{$index} {
+    padding-right: $space!important;
+  }
+  .pl-#{$index} {
+    padding-left: $space!important;
+  }
+  .px-#{$index} {
+    @extend .pr-#{$index};
+    @extend .pl-#{$index};
+  }
+  .py-#{$index} {
+    @extend .pt-#{$index};
+    @extend .pb-#{$index};
+  }
+}
+
+@each $index, $space in $spaces {
+  @include spaces-factory($index, $space);
+}

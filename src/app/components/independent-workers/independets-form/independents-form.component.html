@@ -1,0 +1,97 @@
+<div class="row mt-4 center-xs">
+  <div class="col-xs-12">
+    <h2>Inscribe un trabajador independiente</h2>
+  </div>
+</div>
+<div class="row mb-4 center-xs">
+  <form (ngSubmit)="onSaveWorker()" [formGroup]="controlForm" class="col-xs-12 col-md-8">
+    <div class="row">
+      <mat-form-field class="col-xs-12 col-md-6" appearance="fill">
+        <mat-label><span class="color-warn">* </span>Tipo de Documento</mat-label>
+        <mat-select name="documentType" formControlName="documentType">
+          <mat-option *ngFor="let type of documentTypes" [value]="type.id">{{type.descriptor}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="controls.documentType.errors?.required">
+          Este campo es obligatorio.
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="col-xs-12 col-md-6" appearance="fill">
+        <mat-label><span class="color-warn">* </span>Documento</mat-label>
+        <input matInput type="number" name="documentNumber" formControlName="documentNumber">
+        <mat-error *ngIf="controls.documentNumber.errors?.required">
+          Este campo es obligatorio.
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field class="col-xs-12" appearance="fill">
+        <mat-label><span class="color-warn">* </span>Nombres y Apellidos</mat-label>
+        <input matInput type="text" name="fullName" formControlName="fullName">
+        <mat-error *ngIf="controls.fullName.errors?.required">
+          Este campo es obligatorio.
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field class="col-xs-12 col-md-6" appearance="fill">
+        <mat-label><span class="color-warn">* </span>Sexo</mat-label>
+        <mat-select name="gender" formControlName="gender">
+          <mat-option *ngFor="let type of genderTypes" [value]="type.id">{{type.descriptor}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="controls.gender.errors?.required">
+          Este campo es obligatorio.
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="col-xs-12 col-md-6" appearance="fill">
+        <mat-label>Fecha de Nacimiento</mat-label>
+        <input matInput [matDatepicker]="birthdate" formControlName="birthdate" placeholder="MM/DD/AAAA">
+        <mat-datepicker-toggle matSuffix [for]="birthdate"></mat-datepicker-toggle>
+        <mat-datepicker #birthdate></mat-datepicker>
+        <mat-error *ngIf="controls.birthdate.errors?.required">
+          Este campo es obligatorio.
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field class="col-xs-12 col-md-6" appearance="fill">
+        <mat-label><span class="color-warn">* </span>Oficio</mat-label>
+        <input matInput type="text" name="job" formControlName="job">
+        <mat-error *ngIf="controls.job.errors?.required">
+          Este campo es obligatorio.
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="col-xs-12 col-md-6" appearance="fill">
+        <mat-label><span class="color-warn">* </span>Ingresos Mensuales (pesos colombianos)</mat-label>
+        <input matInput type="number" name="monthlyIncome" formControlName="monthlyIncome">
+        <mat-error *ngIf="controls.monthlyIncome.errors?.required">
+          Este campo es obligatorio.
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field class="col-xs-12 col-md-6" appearance="fill">
+        <mat-label><span class="color-warn">* </span>Correo Electrónico</mat-label>
+        <input matInput type="email" name="email" formControlName="email">
+        <mat-error *ngIf="controls.email.errors?.required">
+          Este campo es obligatorio.
+        </mat-error>
+        <mat-error *ngIf="controls.email.errors?.email">
+          El email ingresado no cumple con el formato requerido.
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="col-xs-12 col-md-6" appearance="fill">
+        <mat-label><span class="color-warn">* </span>Teléfono</mat-label>
+        <input matInput type="number" name="telephone" formControlName="telephone">
+        <mat-error *ngIf="controls.telephone.errors?.required">
+          Este campo es obligatorio.
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="row mt-3 end-xs">
+      <div class="col-xs-12">
+          <button mat-flat-button type="button" class="mr-3" (click)="initWorkerData()">Limpiar Filtros</button>
+          <button mat-raised-button type="button" color="primary" [disabled]="!controlForm.valid" (click)="onSaveWorker()">Guardar</button>
+      </div>
+    </div>
+  </form>
+</div>

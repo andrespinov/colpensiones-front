@@ -1,1 +1,22 @@
-<router-outlet></router-outlet>
+<mat-toolbar color="primary">
+  <mat-toolbar-row class="row">
+    <div class="col-xs-4">
+      <h1>Colpensiones</h1>
+    </div>
+    <div class="col-xs-8 end-xs">
+      <button mat-flat-button type="button" color="accent" class="mr-3 toolbar-btn">
+        <a routerLink="personas-independientes/formulario">Inscribir</a>
+      </button>
+      <button mat-flat-button type="button" color="accent" class="toolbar-btn">
+        <a routerLink="personas-independientes/formulario">Listar</a>
+      </button>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
