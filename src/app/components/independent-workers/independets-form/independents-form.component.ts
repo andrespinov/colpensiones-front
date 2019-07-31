@@ -1,8 +1,9 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { IndependentWorkerModel } from 'src/app/models/independent-worker.model';
 import { TypeModel } from 'src/app/models/type-model';
 import { TYPES } from 'src/app/shared/types';
-import { NgForm, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { IndependentWorkerService } from 'src/app/services/independent-worker.service';
 
 @Component({
   selector: 'independents-form',
@@ -17,7 +18,9 @@ export class IndependentsFormComponent {
 
   private workerForm: FormGroup;
 
-  public constructor() {
+  public constructor(
+    private independentWorkerService: IndependentWorkerService
+  ) {
     this.documentTypes = TYPES.DOCUMENT_TYPES;
     this.genderTypes = TYPES.GENDER_TYPES;
     this.initWorkerData();
@@ -42,5 +45,9 @@ export class IndependentsFormComponent {
     });
   }
 
-  public onSaveWorker(): void {}
+  public onSaveWorker(): void {
+    this.independentWorkerService.createIndependentWorkerObservable(new IndependentWorkerModel(this.workerForm.value)).subscribe(() => {
+      this.initWorkerData();
+    }, (error) => console.log(error));
+  }
 }
