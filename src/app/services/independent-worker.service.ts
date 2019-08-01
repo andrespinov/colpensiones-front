@@ -17,16 +17,16 @@ export class IndependentWorkerService {
   public constructor(private http: HttpClient) {}
 
   public createIndependentWorkerObservable(worker: IndependentWorkerModel) {
-    return this.http.post<IndependentWorkerModel>(environment.api + Endpoints.INDEPENDENT_WORKER, worker).pipe(
+    return this.http.post<IndependentWorkerModel>(`${environment.api}${Endpoints.INDEPENDENT_WORKER}`, worker).pipe(
       map((createdWorker: IndependentWorkerModel) => {
-        this.independentWorkers.push(createdWorker);
+        this.independentWorkers = [createdWorker, ...this.independentWorkers];
         this.independentWorkersSubject.next(true);
       })
     );
   }
 
   public getIndependentWorkersAsync() {
-    return this.http.get<IndependentWorkerModel[]>(environment.api + Endpoints.INDEPENDENT_WORKER).pipe(
+    return this.http.get<IndependentWorkerModel[]>(`${environment.api}${Endpoints.INDEPENDENT_WORKER}`).pipe(
       map((workers: IndependentWorkerModel[]) => {
         this.independentWorkers = [...workers];
         this.independentWorkersSubject.next(true);
@@ -40,8 +40,7 @@ export class IndependentWorkerService {
 
   public updateIndependentWorkerState(worker: IndependentWorkerModel, approved: boolean) {
     worker.approved = approved;
-    worker.reviewed = true;
-    return this.http.put<IndependentWorkerModel>(environment.api + Endpoints.INDEPENDENT_WORKER, worker).pipe(
+    return this.http.put<IndependentWorkerModel>(`${environment.api}${Endpoints.INDEPENDENT_WORKER}/${worker.documentNumber}`, worker).pipe(
       map((updatedWorker: IndependentWorkerModel) => {
         const workerIndex = this.independentWorkers.findIndex((w: IndependentWorkerModel) =>
           w.documentNumber === updatedWorker.documentNumber

@@ -10,8 +10,58 @@
       <td mat-cell *matCellDef="let element"> {{element[column.prop]}} </td>
     </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="columnsProps"></tr>
-    <tr mat-row *matRowDef="let element; columns: columnsProps"></tr>
+    <ng-container matColumnDef="expandedDetail">
+      <td mat-cell *matCellDef="let element" [attr.colspan]="tableColumns.length">
+        <div [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+          <div class="row">
+            <mat-form-field class="col-xs-12 col-md-6" appearance="fill">
+              <mat-label>Sexo</mat-label>
+              <mat-select name="gender" [(ngModel)]="element.gender" disabled>
+                <mat-option *ngFor="let type of genderTypes" [value]="type.id">{{type.descriptor}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="col-xs-12 col-md-6" appearance="fill">
+              <mat-label>Fecha de Nacimiento</mat-label>
+              <input matInput [matDatepicker]="birthdate" [(ngModel)]="element.birthdate" disabled>
+              <mat-datepicker-toggle matSuffix [for]="birthdate"></mat-datepicker-toggle>
+              <mat-datepicker #birthdate></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field class="col-xs-12 col-md-6" appearance="fill">
+              <mat-label>Oficio</mat-label>
+              <input matInput type="text" name="job" [(ngModel)]="element.job" disabled>
+            </mat-form-field>
+            <mat-form-field class="col-xs-12 col-md-6" appearance="fill">
+              <mat-label>Ingresos Mensuales (pesos colombianos)</mat-label>
+              <input matInput type="number" name="monthlyIncome" [(ngModel)]="element.monthlyIncome" disabled>
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field class="col-xs-12 col-md-6" appearance="fill">
+              <mat-label>Correo Electrónico</mat-label>
+              <input matInput type="email" name="email" [(ngModel)]="element.email" disabled>
+            </mat-form-field>
+            <mat-form-field class="col-xs-12 col-md-6" appearance="fill">
+              <mat-label>Teléfono</mat-label>
+              <input matInput type="number" name="telephone" [(ngModel)]="element.telephone" disabled>
+            </mat-form-field>
+          </div>
+          <div class="row end-xs my-2">
+            <div *ngIf="!element.reviewed"class="col-xs-12">
+              <button mat-flat-button type="button" color="danger" class="mr-3" (click)="modifyWorker(false)">Rechazar</button>
+              <button mat-raised-button type="button" color="primary" (click)="modifyWorker(true)">Aprovar</button>
+            </div>
+            <div *ngIf="element.reviewed" class="col-xs-12 center-xs">
+              <span [ngClass]="element.approved ? 'color-primary': 'color-warn'">El trabajador fue {{element.approved ? 'aprovado.' : 'rechazado.'}}</span>
+            </div>
+          </div>
+        </div>
+      </td>
+    </ng-container>
 
+    <tr mat-header-row *matHeaderRowDef="columnsProps"></tr>
+    <tr mat-row *matRowDef="let element; columns: columnsProps" (click)="expandedElement = expandedElement === element ? null : element"></tr>
+    <tr mat-row *matRowDef="let element; columns: ['expandedDetail']" [class.hide-element]="expandedElement !== element"></tr>
   </table>
 </div>

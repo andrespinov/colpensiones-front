@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatNativeDateModule } from '@angular/material/core';
 
 import { MatButtonModule } from '@angular/material/button';
@@ -11,6 +12,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
   imports: [
+    BrowserAnimationsModule,
     MatButtonModule,
     MatDatepickerModule,
     MatIconModule,
@@ -21,6 +23,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatToolbarModule
   ],
   exports: [
+    BrowserAnimationsModule,
     MatButtonModule,
     MatDatepickerModule,
     MatIconModule,
