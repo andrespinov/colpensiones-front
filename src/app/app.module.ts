@@ -11,7 +11,6 @@ import { IndependentWorkerService } from './services/independent-worker.service'
 // Modules
 import { SharedModule } from './shared/shared.module';
 import { IndependentWorkerModule } from './components/independent-workers/independent-worker.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -23,7 +22,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     IndependentWorkerModule,
     SharedModule,
-    BrowserAnimationsModule
   ],
   providers: [IndependentWorkerService],
   bootstrap: [AppComponent]

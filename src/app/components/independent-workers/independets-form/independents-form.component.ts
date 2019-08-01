@@ -6,7 +6,7 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { IndependentWorkerService } from 'src/app/services/independent-worker.service';
 
 @Component({
-  selector: 'independents-form',
+  selector: 'app-independents-form',
   templateUrl: 'independents-form.component.html'
 })
 

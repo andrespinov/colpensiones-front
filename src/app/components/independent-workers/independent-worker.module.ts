@@ -6,13 +6,15 @@ import { HttpClientModule } from '@angular/common/http';
 
 // Components
 import { IndependentsFormComponent } from './independets-form/independents-form.component';
+import { IndependentsListComponent } from './independents-list/independents-list.component';
 
 // Modules
 import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [
-    IndependentsFormComponent
+    IndependentsFormComponent,
+    IndependentsListComponent
   ],
   imports: [
     BrowserModule,
